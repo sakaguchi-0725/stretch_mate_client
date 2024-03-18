@@ -12,7 +12,8 @@
     "lint:eslint": "eslint src",
     "fix:eslint": "eslint src --fix",
     "lint": "npm run lint:prettier && npm run lint:eslint",
-    "fix": "npm run fix:prettier && npm run fix:eslint"
+    "fix": "npm run fix:prettier && npm run fix:eslint",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "react": "^18.2.0",

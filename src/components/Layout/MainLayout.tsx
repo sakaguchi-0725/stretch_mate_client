@@ -5,7 +5,7 @@ type MainLayoutProps = {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
-      <div>MainLayout</div>
+      <div className="test">MainLayout</div>
       {children}
     </>
   );

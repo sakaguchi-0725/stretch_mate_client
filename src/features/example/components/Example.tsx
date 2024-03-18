@@ -4,8 +4,7 @@ const Example = () => {
       <h1>Example</h1>
       <p>hoge</p>
     </>
-    
-  )
-}
+  );
+};
 
-export default Example
+export default Example;

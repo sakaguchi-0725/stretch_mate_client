@@ -1,4 +1,4 @@
 export type ExampleType = {
-  id: number
-  hoge: string
-}
+  id: number;
+  hoge: string;
+};

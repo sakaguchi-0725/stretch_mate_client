@@ -1,14 +1,14 @@
 type MainLayoutProps = {
-  children: React.ReactElement
-}
+  children: React.ReactElement;
+};
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
       <div>MainLayout</div>
-      { children }
+      {children}
     </>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;

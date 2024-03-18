@@ -1,12 +1,12 @@
-import { Route, Routes } from 'react-router-dom'
-import Example from '../components/Example'
+import { Route, Routes } from "react-router-dom";
+import Example from "../components/Example";
 
 const ExampleRoute = () => {
   return (
     <Routes>
       <Route path="/" element={<Example />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default ExampleRoute
+export default ExampleRoute;

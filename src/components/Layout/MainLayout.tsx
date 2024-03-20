@@ -1,3 +1,5 @@
+import Sidebar from "../Sidebar/Sidebar";
+
 type MainLayoutProps = {
   children: React.ReactElement;
 };
@@ -5,8 +7,10 @@ type MainLayoutProps = {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
-      <div className="test">MainLayout</div>
-      {children}
+      <div className="md:flex h-screen bg-bg md:p-3">
+        <Sidebar />
+        <div className="w-full md:ml-4 sm:mt-4">{children}</div>
+      </div>
     </>
   );
 };

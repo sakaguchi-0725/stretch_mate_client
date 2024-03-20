@@ -48,9 +48,9 @@ const Sidebar = () => {
       <div className="hidden md:block w-72 bg-primary p-3 rounded text-white shadow h-full">
         <div className="flex items-center p-2 space-x-4">
           <img
-            src="https://source.unsplash.com/100x100/?portrait"
+            src="../../../public/default_profile.png"
             alt=""
-            className="lg:w-11 lg:h-11 md:w-10 md:h-10 rounded-full ring-2 ring-primary-light"
+            className="lg:w-12 lg:h-12 md:w-10 md:h-10 rounded-full ring-2 ring-primary-light"
           />
           <div>
             <h2 className="md:text-base lg:text-lg font-semibold">

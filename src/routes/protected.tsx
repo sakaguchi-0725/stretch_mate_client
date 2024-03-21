@@ -12,8 +12,8 @@ const App = () => {
 
 export const protectedRoutes = [
   {
-    path: "/",
+    path: "/app",
     element: <App />,
-    children: [{ path: "/example/*", element: <ExampleRoute /> }],
+    children: [{ path: "example", element: <ExampleRoute /> }],
   },
 ];

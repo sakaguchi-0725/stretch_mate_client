@@ -48,7 +48,7 @@ const Sidebar = () => {
       <div className="hidden md:block w-72 bg-primary p-3 rounded text-white shadow h-full">
         <div className="flex items-center p-2 space-x-4">
           <img
-            src="../../../public/default_profile.png"
+            src="../../../public/images/default_profile.png"
             alt=""
             className="lg:w-12 lg:h-12 md:w-10 md:h-10 rounded-full ring-2 ring-primary-light"
           />

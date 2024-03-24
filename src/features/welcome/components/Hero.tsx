@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Hero = () => {
   return (
     <section className="text-white">
@@ -7,7 +9,7 @@ const Hero = () => {
         </h1>
         <p className="px-8 mt-8 mb-12 text-lg">あなたの毎日をもっと快適にするために、Stretch Mateはここにあります。<br />日々のストレッチがもたらす変化を実感し、自分だけのルーティンを作りましょう。</p>
         <div className="flex flex-wrap justify-center">
-          <button className="px-8 py-5 text-lg font-semibold bg-white text-slate-900 hover:bg-stone-200">GET STARTED</button>
+          <button className="px-8 py-5 text-lg font-semibold bg-white text-slate-900 hover:bg-stone-200"><Link to="/auth/signup">GET STARTED</Link></button>
         </div>
       </div>
     </section>

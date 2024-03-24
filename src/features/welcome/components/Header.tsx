@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const Header = () => {
   return (
     <header className="p-4 text-white">
@@ -6,8 +8,8 @@ const Header = () => {
           <img src="../../../../public/images/logo.png" alt="logo" className="w-12 h-12" />
         </a>
         <div className="items-center flex-shrink-0">
-          <button className="self-center mr-4 px-4 py-3 text-sm">LOG IN</button>
-          <button className="self-center px-4 py-3 text-sm bg-white text-slate-900 hover:bg-stone-200">GET STARTED</button>
+          <button className="self-center mr-4 px-4 py-3 text-sm"><Link to="/auth/login">LOG IN</Link></button>
+          <button className="self-center px-4 py-3 text-sm bg-white text-slate-900 hover:bg-stone-200"><Link to="/auth/signup">GET STARTED</Link></button>
         </div>
       </div>
     </header>

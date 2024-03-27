@@ -1,21 +1,36 @@
-import { useState } from "react";
 import AuthLayout from "./AuthLayout";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signIn } from "aws-amplify/auth";
 
-const Login = () => {
+const SignIn = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email, password);
+    try {
+      const { isSignedIn } = await signIn({
+        username: email,
+        password,
+      });
+      if (isSignedIn) {
+        navigate('/app/home');
+      } else {
+        throw new Error("ログインに失敗しました");
+      }
+    } catch (error) {
+      console.log(error);
+    }
     setEmail('');
     setPassword('');
   }
 
   return (
-    <AuthLayout title="Login">
+    <AuthLayout title="Sign In">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSignIn}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
               Email address
@@ -79,4 +94,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignIn

@@ -1,25 +1,52 @@
-import { useState } from "react";
 import AuthLayout from "./AuthLayout";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "aws-amplify/auth";
+import { useState } from "react";
 
-const Signup = () => {
-  const [userName, setUserName] = useState('');
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(userName, email, password);
-    setUserName('');
-    setEmail('');
-    setPassword('');
+
+    try {
+      const { nextStep } = await signUp({
+        username: email,
+        password,
+        options: {
+          userAttributes: {
+            email,
+            name: username,
+          },
+          autoSignIn: {
+            authFlowType: "USER_SRP_AUTH",
+          }
+        },
+      });
+
+      if (nextStep.signUpStep === "CONFIRM_SIGN_UP") {
+        sessionStorage.setItem('email', email);
+        navigate("/auth/signup/confirm");
+        setUsername('');
+        setEmail('');
+        setPassword('');
+      } else {
+        throw new Error("Unexpected signUpStep value: " + nextStep.signUpStep);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
-    <AuthLayout title="Sign up">
+    <AuthLayout title="Sign Up">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSignUp}>
           <div>
             <label htmlFor="userName" className="block text-sm font-medium leading-6 text-gray-900">
-              User Name
+              ユーザー名
             </label>
             <div className="mt-2">
               <input
@@ -28,14 +55,14 @@ const Signup = () => {
                 type="text"
                 required
                 className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-              Email address
+              メールアドレス
             </label>
             <div className="mt-2">
               <input
@@ -53,7 +80,7 @@ const Signup = () => {
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                Password
+                パスワード
               </label>
             </div>
             <div className="mt-2">
@@ -91,4 +118,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignUp

@@ -109,7 +109,7 @@ const SignUp = () => {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           アカウントをお持ちですか？{' '}
-          <a href="/auth/login" className="font-semibold leading-6 text-primary hover:text-primary-dark">
+          <a href="/auth/signin" className="font-semibold leading-6 text-primary hover:text-primary-dark">
             ログインする
           </a>
         </p>

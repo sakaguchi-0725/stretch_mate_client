@@ -33,7 +33,7 @@ const SignIn = () => {
         <form className="space-y-6" onSubmit={handleSignIn}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-              Email address
+              メールアドレス
             </label>
             <div className="mt-2">
               <input
@@ -51,10 +51,10 @@ const SignIn = () => {
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                Password
+                パスワード
               </label>
               <div className="text-sm">
-                <a href="#" className="text-primary hover:text-primary-dark">
+                <a href="/auth/reset-password" className="text-primary hover:text-primary-dark">
                   パスワードをお忘れですか？
                 </a>
               </div>

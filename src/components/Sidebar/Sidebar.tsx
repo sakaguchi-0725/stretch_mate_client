@@ -7,6 +7,8 @@ import { TbStretching } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { IoMenu } from "react-icons/io5";
+import { signOut } from "aws-amplify/auth";
+import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   { name: "Home", Icon: IoHomeOutline, type: "main" },
@@ -19,6 +21,7 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [selectedMenuItem, setSelectedMenuItem] = useState<string>(
     menuItems[0].name,
   );
@@ -26,9 +29,22 @@ const Sidebar = () => {
   const menuRef = useRef<HTMLUListElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const handleMenuItemClick = (menuItem: string) => setSelectedMenuItem(menuItem);
-
+  const handleMenuItemClick = (menuItem: string) => {
+    if (menuItem === "Logout") {
+      handleSignOut();
+    }
+    setSelectedMenuItem(menuItem);
+  }
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate("/auth/signin");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

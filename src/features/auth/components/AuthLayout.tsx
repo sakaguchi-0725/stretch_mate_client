@@ -1,9 +1,22 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
+
 type AuthLayoutProps = {
   title: string;
   children: React.ReactElement;
 }
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ title, children }) => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/app/home');
+    }
+  }, [isAuthenticated])
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

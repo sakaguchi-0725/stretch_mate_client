@@ -1,9 +1,20 @@
 import MainLayout from "@/components/Layout/MainLayout";
+import { useAuth } from "@/features/auth";
 import ExampleRoute from "@/features/example/routes";
 import { HomeRoutes } from "@/features/home";
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/auth/signin");
+    }
+  }, [isAuthenticated])
+
   return (
     <MainLayout>
       <Outlet />

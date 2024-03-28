@@ -13,16 +13,16 @@ const WelcomeRoute = () => {
       setWindowSize(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const heroStyle: React.CSSProperties = {
     backgroundImage: "url('/images/hero_image.jpg')",
     backgroundSize: "cover",
-    backgroundPosition: windowSize > 1920 ? 'center' : 'top',
-    width: "100vw"
+    backgroundPosition: windowSize > 1920 ? "center" : "top",
+    width: "100vw",
   };
 
   return (
@@ -35,7 +35,7 @@ const WelcomeRoute = () => {
       <News />
       <Contact />
     </>
-  )
-}
+  );
+};
 
-export default WelcomeRoute
+export default WelcomeRoute;

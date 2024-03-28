@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import AuthLayout from './AuthLayout'
-import { resetPassword } from 'aws-amplify/auth';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import AuthLayout from "./AuthLayout";
+import { resetPassword } from "aws-amplify/auth";
+import { useNavigate } from "react-router-dom";
 
 export const ResetPassword = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -23,18 +23,22 @@ export const ResetPassword = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <AuthLayout title="パスワードの再設定">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className='text-gray-600 text-sm text-center'>
-          パスワードを再設定する<br />
+        <h2 className="text-gray-600 text-sm text-center">
+          パスワードを再設定する
+          <br />
           メールアドレスを入力してください。
         </h2>
         <form className="space-y-6 mt-5" onSubmit={handleResetPassword}>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 メールアドレス
               </label>
             </div>
@@ -62,5 +66,5 @@ export const ResetPassword = () => {
         </form>
       </div>
     </AuthLayout>
-  )
-}
+  );
+};

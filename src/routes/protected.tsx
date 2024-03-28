@@ -13,7 +13,7 @@ const App = () => {
     if (!isAuthenticated) {
       navigate("/auth/signin");
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <MainLayout>
@@ -28,7 +28,7 @@ export const protectedRoutes = [
     element: <App />,
     children: [
       { path: "home", element: <HomeRoutes /> },
-      { path: "example", element: <ExampleRoute /> }
+      { path: "example", element: <ExampleRoute /> },
     ],
   },
 ];

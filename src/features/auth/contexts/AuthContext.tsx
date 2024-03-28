@@ -1,26 +1,33 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { Amplify } from 'aws-amplify';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { Amplify } from "aws-amplify";
 import AwsAuthConfig from "@/config";
-import { fetchUserAttributes, FetchUserAttributesOutput, getCurrentUser} from 'aws-amplify/auth';
-import { Hub } from 'aws-amplify/utils';
-import { HubPayload } from '@aws-amplify/core';
+import {
+  fetchUserAttributes,
+  FetchUserAttributesOutput,
+  getCurrentUser,
+} from "aws-amplify/auth";
+import { Hub } from "aws-amplify/utils";
+import { HubPayload } from "@aws-amplify/core";
 
 Amplify.configure({
   Auth: {
     Cognito: AwsAuthConfig,
-  } 
+  },
 });
 
 type AuthContextType = {
   isAuthenticated: boolean;
   currentUserAttributes: FetchUserAttributesOutput | undefined;
   checkAuthState: () => void;
-}
+};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentUserAttributes, setCurrentUserAttributes] = useState<FetchUserAttributesOutput>();
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [currentUserAttributes, setCurrentUserAttributes] =
+    useState<FetchUserAttributesOutput>();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -40,10 +47,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     };
 
-    Hub.listen('auth', (data) => {
-      onAuthEvent(data.payload)
+    Hub.listen("auth", (data) => {
+      onAuthEvent(data.payload);
     });
-  }, [])
+  }, []);
 
   const checkAuthState = async () => {
     try {
@@ -60,10 +67,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.log(error);
       setIsAuthenticated(false);
     }
-  }
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, currentUserAttributes, checkAuthState }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, currentUserAttributes, checkAuthState }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -73,8 +82,8 @@ export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
 
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
 
   return context;
-}
+};

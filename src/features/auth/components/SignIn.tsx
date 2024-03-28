@@ -5,8 +5,8 @@ import { signIn } from "aws-amplify/auth";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,23 +16,26 @@ const SignIn = () => {
         password,
       });
       if (isSignedIn) {
-        navigate('/app/home');
+        navigate("/app/home");
       } else {
         throw new Error("ログインに失敗しました");
       }
     } catch (error) {
       console.log(error);
     }
-    setEmail('');
-    setPassword('');
-  }
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <AuthLayout title="Sign In">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSignIn}>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               メールアドレス
             </label>
             <div className="mt-2">
@@ -50,11 +53,17 @@ const SignIn = () => {
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 パスワード
               </label>
               <div className="text-sm">
-                <a href="/auth/reset-password" className="text-primary hover:text-primary-dark">
+                <a
+                  href="/auth/reset-password"
+                  className="text-primary hover:text-primary-dark"
+                >
                   パスワードをお忘れですか？
                 </a>
               </div>
@@ -84,14 +93,17 @@ const SignIn = () => {
         </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
-          アカウントをお持ちではないですか？{' '}
-          <a href="/auth/signup" className="font-semibold leading-6 text-primary hover:text-primary-dark">
+          アカウントをお持ちではないですか？{" "}
+          <a
+            href="/auth/signup"
+            className="font-semibold leading-6 text-primary hover:text-primary-dark"
+          >
             登録する
           </a>
         </p>
       </div>
     </AuthLayout>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

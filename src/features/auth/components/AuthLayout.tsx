@@ -5,7 +5,7 @@ import { useEffect } from "react";
 type AuthLayoutProps = {
   title: string;
   children: React.ReactElement;
-}
+};
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ title, children }) => {
   const navigate = useNavigate();
@@ -13,9 +13,9 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ title, children }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/app/home');
+      navigate("/app/home");
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -34,7 +34,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ title, children }) => {
         {children}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default AuthLayout;

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import AuthLayout from "./AuthLayout"
+import AuthLayout from "./AuthLayout";
 import { useState } from "react";
 import { confirmResetPassword } from "aws-amplify/auth";
 
@@ -14,13 +14,13 @@ export const ResetPasswordConfirm = () => {
 
   const handleConfirmResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       await confirmResetPassword({
         username: email!,
         newPassword,
-        confirmationCode
-      })
+        confirmationCode,
+      });
       sessionStorage.removeItem("email");
       setNewPassword("");
       setConfirmationCode("");
@@ -30,13 +30,14 @@ export const ResetPasswordConfirm = () => {
       console.log(error);
       navigate("/auth/reset-password");
     }
-  }
+  };
 
   return (
     <AuthLayout title="パスワードの再設定">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className='text-gray-600 text-sm text-center'>
-          新しいパスワードとメールアドレスにお送りした<br />
+        <h2 className="text-gray-600 text-sm text-center">
+          新しいパスワードとメールアドレスにお送りした
+          <br />
           認証コードを入力してください。
         </h2>
         <form className="space-y-6 mt-5" onSubmit={handleConfirmResetPassword}>
@@ -45,12 +46,20 @@ export const ResetPasswordConfirm = () => {
               メールアドレス
             </p>
             <div className="mt-2">
-              <p id="email" className='block w-full py-1.5 text-gray-900 sm:text-sm sm:leading-6'>{email}</p>
+              <p
+                id="email"
+                className="block w-full py-1.5 text-gray-900 sm:text-sm sm:leading-6"
+              >
+                {email}
+              </p>
             </div>
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="newPassword" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="newPassword"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 新しいパスワード
               </label>
             </div>
@@ -69,7 +78,10 @@ export const ResetPasswordConfirm = () => {
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="confirmationCode" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="confirmationCode"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 認証コード
               </label>
             </div>
@@ -97,5 +109,5 @@ export const ResetPasswordConfirm = () => {
         </form>
       </div>
     </AuthLayout>
-  )
-}
+  );
+};

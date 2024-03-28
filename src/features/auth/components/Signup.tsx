@@ -5,9 +5,9 @@ import { useState } from "react";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,29 +23,32 @@ const SignUp = () => {
           },
           autoSignIn: {
             authFlowType: "USER_SRP_AUTH",
-          }
+          },
         },
       });
 
       if (nextStep.signUpStep === "CONFIRM_SIGN_UP") {
-        sessionStorage.setItem('email', email);
+        sessionStorage.setItem("email", email);
         navigate("/auth/signup/confirm");
-        setUsername('');
-        setEmail('');
-        setPassword('');
+        setUsername("");
+        setEmail("");
+        setPassword("");
       } else {
         throw new Error("Unexpected signUpStep value: " + nextStep.signUpStep);
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <AuthLayout title="Sign Up">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSignUp}>
           <div>
-            <label htmlFor="userName" className="block text-sm font-medium leading-6 text-gray-900">
+            <label
+              htmlFor="userName"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               ユーザー名
             </label>
             <div className="mt-2">
@@ -61,7 +64,10 @@ const SignUp = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               メールアドレス
             </label>
             <div className="mt-2">
@@ -79,7 +85,10 @@ const SignUp = () => {
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 パスワード
               </label>
             </div>
@@ -108,14 +117,17 @@ const SignUp = () => {
         </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
-          アカウントをお持ちですか？{' '}
-          <a href="/auth/signin" className="font-semibold leading-6 text-primary hover:text-primary-dark">
+          アカウントをお持ちですか？{" "}
+          <a
+            href="/auth/signin"
+            className="font-semibold leading-6 text-primary hover:text-primary-dark"
+          >
             ログインする
           </a>
         </p>
       </div>
     </AuthLayout>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

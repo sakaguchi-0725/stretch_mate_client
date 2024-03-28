@@ -17,7 +17,7 @@ const menuItems = [
   { name: "Favorite", Icon: CiHeart, type: "main" },
   { name: "Report", Icon: GoGraph, type: "main" },
   { name: "Settings", Icon: IoSettingsOutline, type: "bottom" },
-  { name: "Logout", Icon: FiLogOut, type: "bottom" }
+  { name: "Logout", Icon: FiLogOut, type: "bottom" },
 ];
 
 const Sidebar = () => {
@@ -34,7 +34,7 @@ const Sidebar = () => {
       handleSignOut();
     }
     setSelectedMenuItem(menuItem);
-  }
+  };
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const handleSignOut = async () => {
@@ -44,12 +44,17 @@ const Sidebar = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node) && 
-          buttonRef.current && !buttonRef.current.contains(event.target as Node) && isOpen) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node) &&
+        isOpen
+      ) {
         setIsOpen(false);
       }
     };
@@ -88,36 +93,44 @@ const Sidebar = () => {
           style={{ height: "48rem" }}
         >
           <ul className="pt-3 pb-4 space-y-1 text-sm">
-            {menuItems.filter(item => item.type === "main").map(({ name, Icon }) => (
-              <li
-                key={name}
-                className={`text-base ${selectedMenuItem === name ? "bg-primary-dark rounded" : ""}`}
-                onClick={() => handleMenuItemClick(name)}
-              >
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className={`flex items-center p-2 space-x-3 rounded-md ${selectedMenuItem !== name ? "hover:underline" : ""}`}
+            {menuItems
+              .filter((item) => item.type === "main")
+              .map(({ name, Icon }) => (
+                <li
+                  key={name}
+                  className={`text-base ${selectedMenuItem === name ? "bg-primary-dark rounded" : ""}`}
+                  onClick={() => handleMenuItemClick(name)}
                 >
-                  <Icon size="1.4rem" />
-                  <span>{name}</span>
-                </a>
-              </li>
-            ))}
+                  <a
+                    rel="noopener noreferrer"
+                    href="#"
+                    className={`flex items-center p-2 space-x-3 rounded-md ${selectedMenuItem !== name ? "hover:underline" : ""}`}
+                  >
+                    <Icon size="1.4rem" />
+                    <span>{name}</span>
+                  </a>
+                </li>
+              ))}
           </ul>
           <ul className="pt-4">
-            {menuItems.filter(item => item.type === "bottom").map(({ name, Icon }) => (
-              <li className={`text-base ${selectedMenuItem === name ? "bg-primary-dark rounded" : ""}`} key={name} onClick={() => handleMenuItemClick(name)}>
-                <a
-                  rel="noopener noreferrer"
-                  href="#"
-                  className={`flex items-center p-2 space-x-3 rounded-md ${selectedMenuItem !== name ? "hover:underline" : ""}`}
+            {menuItems
+              .filter((item) => item.type === "bottom")
+              .map(({ name, Icon }) => (
+                <li
+                  className={`text-base ${selectedMenuItem === name ? "bg-primary-dark rounded" : ""}`}
+                  key={name}
+                  onClick={() => handleMenuItemClick(name)}
                 >
-                  <Icon size="1.4rem" />
-                  <span>{name}</span>
-                </a>
-              </li>
-            ))}
+                  <a
+                    rel="noopener noreferrer"
+                    href="#"
+                    className={`flex items-center p-2 space-x-3 rounded-md ${selectedMenuItem !== name ? "hover:underline" : ""}`}
+                  >
+                    <Icon size="1.4rem" />
+                    <span>{name}</span>
+                  </a>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
@@ -144,11 +157,22 @@ const Sidebar = () => {
             <IoMenu size="2rem" />
           </button>
         </div>
-        <ul ref={menuRef} className={`${isOpen ? 'absolute' : 'hidden'} top-full right-0 bg-white w-44 text-black p-2 shadow rounded`}>
+        <ul
+          ref={menuRef}
+          className={`${isOpen ? "absolute" : "hidden"} top-full right-0 bg-white w-44 text-black p-2 shadow rounded`}
+        >
           {/* メニュー項目 */}
           {menuItems.map(({ name, Icon }) => (
-            <li key={name} onClick={() => handleMenuItemClick(name)} className="text-sm p-2 hover:bg-bg rounded">
-              <a rel="noopener noreferrer" href="#" className="flex items-center">
+            <li
+              key={name}
+              onClick={() => handleMenuItemClick(name)}
+              className="text-sm p-2 hover:bg-bg rounded"
+            >
+              <a
+                rel="noopener noreferrer"
+                href="#"
+                className="flex items-center"
+              >
                 <Icon size="1.4rem" />
                 <span className="ml-2">{name}</span>
               </a>

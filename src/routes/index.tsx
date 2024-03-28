@@ -5,7 +5,11 @@ import { publicRoutes } from "./public";
 
 export const AppRoutes = () => {
   const commonRoutes = [{ path: "/", element: <WelcomeRoute /> }];
-  const element = useRoutes([...publicRoutes, ...protectedRoutes, ...commonRoutes]);
+  const element = useRoutes([
+    ...publicRoutes,
+    ...protectedRoutes,
+    ...commonRoutes,
+  ]);
 
   return <>{element}</>;
 };

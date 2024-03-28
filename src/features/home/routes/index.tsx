@@ -1,7 +1,5 @@
-import { Home } from '../components/Home'
+import { Home } from "../components/Home";
 
 export const HomeRoutes = () => {
-  return (
-    <Home />
-  )
-}
+  return <Home />;
+};

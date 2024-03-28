@@ -1,8 +1,8 @@
-import { AuthRoutes } from '@/features/auth';
+import { AuthRoutes } from "@/features/auth";
 
 export const publicRoutes = [
   {
-    path: '/auth/*',
+    path: "/auth/*",
     element: <AuthRoutes />,
   },
 ];
